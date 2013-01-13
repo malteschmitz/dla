@@ -5,3 +5,10 @@
 #canvas {
   border: solid 1px #000;
 }
+
+.fork {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
