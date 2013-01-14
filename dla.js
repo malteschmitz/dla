@@ -13,12 +13,14 @@ jQuery(function ($) {
   // number of highlighted points
   // select HTML elements
   var canvas = $('#canvas');
-  var start = $('#start');
-  // main grid
-  var grid = {};
-  if (canvas.length > 0 && start.length > 0) {
+  var startButton = $('#start');
+  var stopButton = $('#stop');
+  if (canvas.length > 0) {
+    var grid = {};
     var context = canvas[0].getContext('2d');
     var oldPoints = [];
+    var run = false;
+    
     function drawPoint (point, color) {
       context.fillStyle = color;
       context.fillRect(point[0] + offsetX, point[1] + offsetY, 1, 1);
@@ -61,31 +63,49 @@ jQuery(function ($) {
       }
     }
 
-
-    start.click(function () {
-      // reset grid and delete old points
+    function step () {
+      if (run) {
+        var point = computePoint();
+        if (Math.sqrt(point[0] * point[0] + point[1] * point[1]) < R) {
+          addPoint(point, true);
+          window.setTimeout(step, 0);
+        } else {
+          stop();
+        }
+      }
+    }
+    
+    function start () {
+      startButton.attr('disabled', 'disabled');
+      stopButton.removeAttr('disabled');
+      run = true;
+      // reset grid
       grid = {};
-      cleanAllPoints();
-      
-      // draw circle with radius 80
+      // clear everthing
       context.clearRect(0, 0, width, height);
+      //draw circle with radius R
       context.strokeStyle = 'orange';
       context.beginPath();
       context.arc(offsetX, offsetY, R, 0, Math.PI * 2, true);
       context.stroke();
       // place a seed at the center of the grid
       addPoint([0, 0], true);
-      var step = function () {
-        var point = computePoint();
-        if (Math.sqrt(point[0] * point[0] + point[1] * point[1]) < R) {
-          addPoint(point, true);
-          window.setTimeout(step, 0);
-        } else {
-          cleanAllPoints();
-        }
-      }
+      // run first step
       window.setTimeout(step, 0);
       return false
-    });
+    }
+
+    function stop () {
+      stopButton.attr('disabled', 'disabled');
+      startButton.removeAttr('disabled');
+      run = false;
+      cleanAllPoints();
+      return false
+    }
+
+    stopButton.attr('disabled', 'disabled');
+    startButton.removeAttr('disabled');
+    stopButton.click(stop);
+    startButton.click(start);
   }
 });
