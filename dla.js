@@ -63,6 +63,10 @@ jQuery(function ($) {
 
 
     start.click(function () {
+      // reset grid and delete old points
+      grid = {};
+      cleanAllPoints();
+      
       // draw circle with radius 80
       context.clearRect(0, 0, width, height);
       context.strokeStyle = 'orange';
