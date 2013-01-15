@@ -12,6 +12,8 @@ jQuery(function ($) {
   var highlighted;
   // zoom factor
   var zoom;
+  // propability that a new point sticks to an existing point
+  var stickiness;
   // select HTML elements
   var canvas = $('#canvas');
   var startButton = $('#start');
@@ -22,23 +24,24 @@ jQuery(function ($) {
   var oldPoints = [];
   var run = false;
   // methods
-  function readOptions() {
+  function readOptions () {
     width = +$('#width').val();
     height = +$('#height').val();
-    offsetX = Math.floor(width/2);
-    offsetY = Math.floor(height/2);
+    offsetX = Math.floor(width / 2);
+    offsetY = Math.floor(height / 2);
     radius = +$('#radius').val();
     highlighted = +$('#highlighted').val();
     zoom = +$('#zoom').val();
+    stickiness = +$('#stickiness').val();
     clearCanvas();
     return false
   }
 
-  function clearCanvas() {
+  function clearCanvas () {
     // set dimensions of canvas
     canvas.css({
-      width: zoom*width + 'px',
-      height: zoom*height + 'px'
+      width: zoom * width + 'px',
+      height: zoom * height + 'px'
     });
     canvas.attr('width', width);
     canvas.attr('height', height);
@@ -51,7 +54,7 @@ jQuery(function ($) {
     context.arc(offsetX, offsetY, radius, 0, Math.PI * 2, true);
     context.stroke();
   }
-  
+
   function drawPoint (point, color) {
     var context = canvas[0].getContext('2d');
     context.fillStyle = color;
@@ -84,12 +87,16 @@ jQuery(function ($) {
       var y = Math.round(radius * Math.sin(alpha));
       // diffuse it
       while (x >= -offsetX && x <= width - offsetX && y >= -offsetY && y <= height - offsetY) {
-        var dx = Math.floor(Math.random() * 3) - 1;
-        var dy = Math.floor(Math.random() * 3) - 1;
+        do {
+          var dx = Math.floor(Math.random() * 3) - 1;
+          var dy = Math.floor(Math.random() * 3) - 1;
+        } while (grid[x + dx + (y + dy) * width]);
         x += dx;
         y += dy;
         if (grid[x - 1 + y * width] || grid[x + 1 + y * width] || grid[x + (y - 1) * width] || grid[x + (y + 1) * width]) {
-          return [x, y];
+          if (Math.random() < stickiness) {
+            return [x, y];
+          }
         }
       }
     }
@@ -128,6 +135,7 @@ jQuery(function ($) {
     cleanAllPoints();
     return false
   }
+
 
   stopButton.attr('disabled', 'disabled');
   startButton.removeAttr('disabled');
