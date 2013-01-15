@@ -17,6 +17,10 @@ jQuery(function ($) {
   var stickya, stickyb, stickyc;
   // one or two grain version?
   var grain;
+  // colors: highlighted, one grain, two grain first, two grain second
+  var colors = [];
+  // color of the circle
+  var colorCircle;
   // select HTML elements
   var canvas = $('#canvas');
   var startButton = $('#start');
@@ -40,6 +44,11 @@ jQuery(function ($) {
     stickyb = +$('#stickyb').val();
     stickyc = +$('#stickyc').val();
     grain = $('#options input[name=grain]:checked').val();
+    colors[0] = $('#colorHighlighted').val();
+    colors[1] = $('#colorOne').val();
+    colors[2] = $('#colorTwoFirst').val();
+    colors[3] = $('#colorTwoSecond').val();
+    colorCircle = $('#colorCircle').val();
   }
 
   function clearCanvas () {
@@ -54,18 +63,14 @@ jQuery(function ($) {
     var context = canvas[0].getContext('2d');
     context.clearRect(0, 0, width, height);
     //draw circle with radius
-    context.strokeStyle = 'orange';
-    context.beginPath();
-    context.arc(offsetX, offsetY, radius, 0, Math.PI * 2, true);
-    context.stroke();
+    if (colorCircle) {
+      context.strokeStyle = colorCircle;
+      context.beginPath();
+      context.arc(offsetX, offsetY, radius, 0, Math.PI * 2, true);
+      context.stroke();
+    }
   }
 
-  var colors = {
-    0: 'red',
-    1: 'black',
-    2: 'green',
-    3: 'blue'
-  };
   function drawPoint (point, value) {
     var context = canvas[0].getContext('2d');
     context.fillStyle = colors[value];
