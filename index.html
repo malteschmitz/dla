@@ -5,7 +5,9 @@
     <link rel="stylesheet" type="text/css" href="dla.css">
   </head>
   <body>
-    <p><a href="https://github.com/malteschmitz/dla"><img class="fork" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a></p>
+    <p>
+      <a href="https://github.com/malteschmitz/dla"><img class="fork" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    </p>
     <h1>Diffusion-limited aggregation (DLA)</h1>
     <canvas id="canvas" width="200" height="200">
       Your browser does not support HTML5 canvas element.
@@ -18,6 +20,53 @@
         Stop
       </button>
     </p>
+    <h2>Options</h2>
+    <form id="options">
+      <fieldset>
+        <legend>
+          dimensions
+        </legend>
+        <p>
+          <label for="width">width</label>
+          <br>
+          <input type="text" size="6" id="width" value="200">
+        </p>
+        <p>
+          <label for="height">height</label>
+          <br>
+          <input type="text" size="6" id="height" value="200">
+        </p>
+        <p>
+          <label for="width">radius of the circle where new points start diffusing</label>
+          <br>
+          <input type="text" size="6" id="radius" value="80">
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>
+          display
+        </legend>
+        <p>
+          <label for="width">number of highlighted points</label>
+          <br>
+          <input type="text" size="6" id="highlighted" value="10">
+        </p>
+        <p>
+          <label for="width">zoom factor</label>
+          <br>
+          <input type="text" size="6" id="zoom" value="3">
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>
+          algorithm
+        </legend>
+        <p>
+          TODO: propability, number of different points
+        </p>
+      </fieldset>
+      <button id="setOptions">set options</button>
+    </form>
     <script src="jquery.js"></script>
     <script src="dla.js"></script>
   </body>
