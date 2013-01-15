@@ -74,7 +74,7 @@
         <legend>
           one-grain version
         </legend>
-        <p><input type="radio" name="grain" value="one" id="one-grain" checked="checked"> <label for="one-grain">use one grain with the following propability</label></p>
+        <p><input type="radio" name="grain" value="one" id="one-grain" checked="checked"> <label for="one-grain">use one grain with the following sticking propability</label></p>
         <p>
           <label for="width">propability that a new point sticks to an existing point</label>
           <br>
@@ -85,21 +85,14 @@
         <legend>
           two-grained version
         </legend>
-        <p><input type="radio" name="grain" value="two" id="two-grain"> <label for="two-grain">use two grains with the following propabilities</label></p>
-        <img src="two-grain.gif" alt="two types of particles have (depending on whom to attach) a sticking probability (1,a;b,1-c)">
+        <p><input type="radio" name="grain" value="two" id="two-grain"> <label for="two-grain">use two grains with the following sticking propabilities</label></p>
+        <p>two types of particles have (depending on whom to attach) a sticking probability<br>
+        <img src="two-grain.png" width="84" height="44" alt="(1,a;b,1-c)" class="matrix"></p>
         <p>
-          <label for="width">a</label>
+          <label for="width">a, b, c</label>
           <br>
-          <input type="text" size="6" id="stickya" value="0.1">
-        </p>
-        <p>
-          <label for="width">b</label>
-          <br>
-          <input type="text" size="6" id="stickyb" value="0.1">
-        </p>
-        <p>
-          <label for="width">c</label>
-          <br>
+          <input type="text" size="6" id="stickya" value="0.1">,
+          <input type="text" size="6" id="stickyb" value="0.1">,
           <input type="text" size="6" id="stickyc" value="0.1">
         </p>
       </fieldset>

@@ -12,3 +12,13 @@
   right: 0;
   border: 0;
 }
+
+img.matrix {
+  padding: 10pt 0 0 2pt;
+}
+
+fieldset {
+  width: 400px;
+  float: left;
+  margin: 5pt;
+}
