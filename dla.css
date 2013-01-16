@@ -2,7 +2,7 @@
   font-family: sans-serif;
 }
 
-#canvas {
+#canvas, img.canvas {
   border: solid 1px #000;
 }
 
