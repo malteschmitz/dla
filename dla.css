@@ -1,5 +1,28 @@
 * {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+}
+
+input, button {
   font-family: sans-serif;
+}
+
+a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-size: 12pt;
+  margin: 0 2px;
+  padding: 0px 5px;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
 }
 
 #canvas, img.canvas {
@@ -23,6 +46,11 @@ fieldset {
   margin: 5pt;
 }
 
+body {
+  font-size: 13pt;
+}
+
 body.doc {
   max-width: 650px;
+  line-height: 1.6;
 }
