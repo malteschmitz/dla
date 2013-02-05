@@ -52,5 +52,6 @@ body {
 
 body.doc {
   max-width: 650px;
+  margin: auto;
   line-height: 1.6;
 }
