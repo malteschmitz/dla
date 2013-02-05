@@ -52,14 +52,14 @@
     the current position (<em>x</em>, <em>y</em>). This way the particle
     moves into one of the eight possible directions up, up right, right, down
     right, down, down left, left, up left or stays at its position with
-    equal propability.</p>
+    equal probability.</p>
     
     <h3>Variants</h3>
     
     <p>In this one-grain version you can set the
-    propability that a new particle sticks to an existing particle. If at
+    probability that a new particle sticks to an existing particle. If at
     least one particle exists in the Von Neumann
-    neighborhood the current particle sticks to them with this propability.
+    neighborhood the current particle sticks to them with this probability.
     If it does not stick it continues diffusing but avoids positions which
     already contains any particle.</p>
     
@@ -69,59 +69,59 @@
     whom to attach) a sticking probability given by the following matrix.</p>
     <p><img src="../two-grain.png" width="84" height="44" alt="(1,a;b,1-c)"></p>
     <ul>
-     <li>Two particles of type 2 stick together with propability 1.</li>
+     <li>Two particles of type 2 stick together with probability 1.</li>
      <li>If a diffusing particle of type 2 hits a particle of type 3 it
-       gets attached with propability <em>a</em>.</li>
+       gets attached with probability <em>a</em>.</li>
      <li>If a diffusing particle of type 3 hits a particle of type 2 it
-       gets attached with propability <em>b</em>.</li>
-     <li>Two particles of type 3 stick together with propability
+       gets attached with probability <em>b</em>.</li>
+     <li>Two particles of type 3 stick together with probability
        1 &minus; <em>c</em>.</li>
     </ul>
-    <p>As sticking propability the sum of all these propabilities for the
-    partciles in the Von Neumann neighborhood of the diffusing particle
+    <p>As sticking probability the sum of all these probabilities for the
+    particles in the Von Neumann neighborhood of the diffusing particle
     is used.</p>
     
     <h2>rendered images</h2>
     <p>All images are generated with dimension 600&times;600 and a circle with radius 240.</p>
     <h3>one-grain version</h3>
-    <p>With a sticking propability of 1 we get the following cluster.</p>
-    <p><img src="one-grain-1.png" class="canvas" width="600" height="600" alt="one-grain with propability 1"></p>
-    <p>With a sticking propability of 0.5 we get the following cluster.</p>
-    <p><img src="one-grain-05.png" class="canvas" width="600" height="600" alt="one-grain with propability 0.5"></p>
-    <p>With a sticking propability of 0.1 we get the following cluster.</p>
-    <p><img src="one-grain-01.png" class="canvas" width="600" height="600" alt="one-grain with propability 0.1"></p>
-    <p>One can observe that the branches of the clsuter consists of
-    more particles the lower the sticking propability is. This can be
+    <p>With a sticking probability of 1 we get the following cluster.</p>
+    <p><img src="one-grain-1.png" class="canvas" width="600" height="600" alt="one-grain with probability 1"></p>
+    <p>With a sticking probability of 0.5 we get the following cluster.</p>
+    <p><img src="one-grain-05.png" class="canvas" width="600" height="600" alt="one-grain with probability 0.5"></p>
+    <p>With a sticking probability of 0.1 we get the following cluster.</p>
+    <p><img src="one-grain-01.png" class="canvas" width="600" height="600" alt="one-grain with probability 0.1"></p>
+    <p>One can observe that the branches of the cluster consists of
+    more particles the lower the sticking probability is. This can be
     explained by watching the movement of one particle: It starts on
     the circle and hits one of the outer particles of the cluster first.
-    With high sticking propability it attaches to one of the outer
-    particles of the cluster. With a lower sticking propablity the
+    With high sticking probability it attaches to one of the outer
+    particles of the cluster. With a lower sticking probability the
     diffusing particle does not attach to the first particle it hits and thus
     can diffuse deeper into the cluster.</p>
     
     <h3>two-grain with <em>a</em> = <em>b</em></h3>    
-    <p>With sticking propabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.1 we get the following cluster.</p>
-    <p><img src="two-grain-a01b01c01.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.1, b = 0.1 and c = 0.1"></p>
-    <p>With sticking propabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.5 we get the following cluster.</p>
-    <p><img src="two-grain-a01b01c05.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.1, b = 0.1 and c = 0.5"></p>
-    <p>With sticking propabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.9</h2> we get the following cluster.</p>
-    <p><img src="two-grain-a01b01c09.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.1, b = 0.1 and c = 0.9"></p>
+    <p>With sticking probabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.1 we get the following cluster.</p>
+    <p><img src="two-grain-a01b01c01.png" class="canvas" width="600" height="600" alt="two-grain with probabilities a = 0.1, b = 0.1 and c = 0.1"></p>
+    <p>With sticking probabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.5 we get the following cluster.</p>
+    <p><img src="two-grain-a01b01c05.png" class="canvas" width="600" height="600" alt="two-grain with probabilities a = 0.1, b = 0.1 and c = 0.5"></p>
+    <p>With sticking probabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.9</h2> we get the following cluster.</p>
+    <p><img src="two-grain-a01b01c09.png" class="canvas" width="600" height="600" alt="two-grain with probabilities a = 0.1, b = 0.1 and c = 0.9"></p>
     <p>With increasing <em>c</em> one can observe the same behaviour as with
-    decreasing sticking propability in the one-grain-version. Additionally one
+    decreasing sticking probability in the one-grain-version. Additionally one
     can observe that with increasing <em>c</em> more type 3 particles&mdash;the blue
     ones&mdash;gets attaches to the type 2 particles&mdash;the lime ones.
     The type 2 particles form long branches whereas the type 3 particles
     gets attaches to any other particles and from random dot clouds.</p>
     
     <h3>two-grain version with <em>a</em> &ne; <em>b</em></h3>
-    <p>With sticking propabilities of <em>a</em> = 0.9, <em>b</em> = 0.1 and <em>c</em> = 0.1 we get the following cluster.</p>
-    <p><img src="two-grain-a09b01c01.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.9, b = 0.1 and c = 0.1"></p>
+    <p>With sticking probabilities of <em>a</em> = 0.9, <em>b</em> = 0.1 and <em>c</em> = 0.1 we get the following cluster.</p>
+    <p><img src="two-grain-a09b01c01.png" class="canvas" width="600" height="600" alt="two-grain with probabilities a = 0.9, b = 0.1 and c = 0.1"></p>
     <p>In this picture type 2 particles&mdash;the lime ones&mdash;gets
-    attached to any existing particle with high propability.</p>
-    <p>With sticking propabilities of <em>a</em> = 0.1, <em>b</em> = 0.9 and <em>c</em> = 0.1 we get the following cluster.</p>
-    <p><img src="two-grain-a01b09c01.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.1, b = 0.9 and c = 0.1"></p>
+    attached to any existing particle with high probability.</p>
+    <p>With sticking probabilities of <em>a</em> = 0.1, <em>b</em> = 0.9 and <em>c</em> = 0.1 we get the following cluster.</p>
+    <p><img src="two-grain-a01b09c01.png" class="canvas" width="600" height="600" alt="two-grain with probabilities a = 0.1, b = 0.9 and c = 0.1"></p>
     <p>In this picture type 3 particles&mdash;the blue ones&mdash;gets
-    attached to any existing particle with high propability. Therefore the type
+    attached to any existing particle with high probability. Therefore the type
     3 particles should form longer branches, but I am not able to see that
     difference.</p>
     
@@ -176,16 +176,16 @@
     the above function and lets it diffuse. If the particle moves out
     of the grid, the inner loop ends and the outer loop starts another
     run with a new start point. If a position with particles in the
-    neighborhoud is reached the function returns the current position
+    neighborhood is reached the function returns the current position
     if a random number out of [0,1) is lower than the specified
     stickiness.</p>
     
     <p>The function <code>computePointTwo</code> works analogue to
     <code>computePoint</code> but using <code>computeProp</code>
-    to get the sticking propability. The function
+    to get the sticking probability. The function
     <code>computeProp</code> takes the value of the diffusing particle
     and the value of the neighbor particle and returns the stickiness
-    propability. The returned value for all neighbor particles get added
+    probability. The returned value for all neighbor particles get added
     together and if a random number out of [0,1) is lower than the stickiness
     computed this way the function returns the current position.</p>
     
