@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Diffusion-limited aggregation (DLA)</title>
+    <link rel="stylesheet" type="text/css" href="../dla.css">
+  </head>
+  <body class="doc">
+    <p>
+      <a href="https://github.com/malteschmitz/dla"><img class="fork" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    </p>
+    <h1>Diffusion-limited aggregation (DLA)</h1>
+    
+    <blockquote>
+      Diffusion-limited aggregation (DLA) is the process whereby particles
+      undergoing a random walk due to Brownian motion cluster together to
+      form aggregates of such particles. This theory, proposed by Witten
+      and Sander in 1981, is applicable to aggregation in any system where
+      diffusion is the primary means of transport in the system. DLA can be
+      observed in many systems such as electrodeposition, Hele-Shaw flow,
+      mineral deposits, and dielectric breakdown.
+      (<a href="http://en.wikipedia.org/w/index.php?title=Diffusion-limited_aggregation&oldid=511795075">Wikipedia</a>)
+    </blockquote>
+
+    <p>This JavaScript application is a computer simulation of DLA.
+    <a href="..">Try it now.</a></p>    
+    
+    <h2>basic idea</h2>
+    
+    <p>We always start with a seed in the center of a grid. New particles
+    start diffusing at a random position on
+    a circle with fixed radius which is part of the grid.
+    This circle is simulating the infinity. There is only one particle
+    at a time diffusing. If this particle leaves the grid a new one starts
+    at another random position. The particle attaches to the existing particles
+    if it reaches a position with at least one particle in the
+    <a href="http://en.wikipedia.org/wiki/Von_Neumann_neighborhood">Von Neumann
+    neighborhood</a>. This way a DLA cluster growths starting at the initial
+    seed. Once a diffusing particle sticks to another particle at a position on
+    the circle no new particles gets created. If the cluster has reached
+    the circle the approximation of the circle to simulate infinity does
+    no more hold at all.</p>
+    
+    <p>A particle diffuses by drawing two random numbers
+    <em>&delta;<sub>x</sub></em> and <em>&delta;<sub>y</sub></em> out of
+    {&minus;1, 0, 1} and
+    adding the vector (<em>&delta;<sub>x</sub></em>,
+    <em>&delta;<sub>y</sub></em>) to
+    the current position (<em>x</em>, <em>y</em>). This way the particle
+    moves into one of the eight possible directions up, up right, right, down
+    right, down, down left, left, up left or stays at its position with
+    equal propability.</p>
+    
+    <h3>Variants</h3>
+    
+    <p>In this one-grain version you can set the
+    propability that a new particle sticks to an existing particle. If at
+    least one particle exists in the Von Neumann
+    neighborhood the current particle sticks to them with this propability.
+    If it does not stick it continues diffusing but avoids positions which
+    already contains any particle.</p>
+    
+    <p>In the two-grain version there are two different types of particles,
+    named 2 and 3, which are generated alternating. We always start with
+    a particle 2 in the center of the grid. Two particles have (depending on
+    whom to attach) a sticking probability given by the following matrix.</p>
+    <p><img src="../two-grain.png" width="84" height="44" alt="(1,a;b,1-c)"></p>
+    <ul>
+     <li>Two particles of type 2 stick together with propability 1.</li>
+     <li>If a diffusing particle of type 2 hits a particle of type 3 it
+       gets attached with propability <em>a</em>.</li>
+     <li>If a diffusing particle of type 3 hits a particle of type 2 it
+       gets attached with propability <em>b</em>.</li>
+     <li>Two particles of type 3 stick together with propability
+       1 &minus; <em>c</em>.</li>
+    </ul>
+    <p>As sticking propability the sum of all these propabilities for the
+    partciles in the Von Neumann neighborhood of the diffusing particle
+    is used.</p>
+    
+    <h2>rendered images</h2>
+    <p>All images are generated with dimension 600&times;600 and a circle with radius 240.</p>
+    <h3>one-grain version</h3>
+    <p>With a sticking propability of 1 we get the following cluster.</p>
+    <p><img src="one-grain-1.png" class="canvas" width="600" height="600" alt="one-grain with propability 1"></p>
+    <p>With a sticking propability of 0.5 we get the following cluster.</p>
+    <p><img src="one-grain-05.png" class="canvas" width="600" height="600" alt="one-grain with propability 0.5"></p>
+    <p>With a sticking propability of 0.1 we get the following cluster.</p>
+    <p><img src="one-grain-01.png" class="canvas" width="600" height="600" alt="one-grain with propability 0.1"></p>
+    <p>One can observe that the branches of the clsuter consists of
+    more particles the lower the sticking propability is. This can be
+    explained by watching the movement of one particle: It starts on
+    the circle and hits one of the outer particles of the cluster first.
+    With high sticking propability it attaches to one of the outer
+    particles of the cluster. With a lower sticking propablity the
+    diffusing particle does not attach to the first particle it hits and thus
+    can diffuse deeper into the cluster.</p>
+    
+    <h3>two-grain with <em>a</em> = <em>b</em></h3>    
+    <p>With sticking propabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.1 we get the following cluster.</p>
+    <p><img src="two-grain-a01b01c01.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.1, b = 0.1 and c = 0.1"></p>
+    <p>With sticking propabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.5 we get the following cluster.</p>
+    <p><img src="two-grain-a01b01c05.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.1, b = 0.1 and c = 0.5"></p>
+    <p>With sticking propabilities of <em>a</em> = 0.1, <em>b</em> = 0.1 and <em>c</em> = 0.9</h2> we get the following cluster.</p>
+    <p><img src="two-grain-a01b01c09.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.1, b = 0.1 and c = 0.9"></p>
+    <p>With increasing <em>c</em> one can observe the same behaviour as with
+    decreasing sticking propability in the one-grain-version. Additionally one
+    can observe that with increasing <em>c</em> more type 3 particles&mdash;the blue
+    ones&mdash;gets attaches to the type 2 particles&mdash;the lime ones.
+    The type 2 particles form long branches whereas the type 3 particles
+    gets attaches to any other particles and from random dot clouds.</p>
+    
+    <h3>two-grain version with <em>a</em> &ne; <em>b</em></h3>
+    <p>With sticking propabilities of <em>a</em> = 0.9, <em>b</em> = 0.1 and <em>c</em> = 0.1 we get the following cluster.</p>
+    <p><img src="two-grain-a09b01c01.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.9, b = 0.1 and c = 0.1"></p>
+    <p>In this picture type 2 particles&mdash;the lime ones&mdash;gets
+    attached to any existing particle with high propability.</p>
+    <p>With sticking propabilities of <em>a</em> = 0.1, <em>b</em> = 0.9 and <em>c</em> = 0.1 we get the following cluster.</p>
+    <p><img src="two-grain-a01b09c01.png" class="canvas" width="600" height="600" alt="two-grain with propabilities a = 0.1, b = 0.9 and c = 0.1"></p>
+    <p>In this picture type 3 particles&mdash;the blue ones&mdash;gets
+    attached to any existing particle with high propability. Therefore the type
+    3 particles should form longer branches, but I am not able to see that
+    difference.</p>
+    
+    <h2>technical details</h2>
+    
+    <p>The function <code>readOptions</code> gets called every time the
+    start button is pressed. It uses <a href="http://jquery.com/">jQuery</a>
+    to read the options edited in the HTML input fields and sets variables
+    declared at the beginning of the script.</p>
+    
+    <p>As drawing surface the
+    <a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial">HTML5 canvas element</a>
+    is used. The function
+    <code>clearCanvas</code> gets called every time the start
+    button is pressed. First it sets the dimension of the canvas according
+    to the given width, height and zoom factor. The zoom is achieved simply
+    by the difference of the width and height attributes of the canvas element
+    and the width and height set to the canvas element via
+    <a href="http://en.wikipedia.org/wiki/CSS">CSS</a>.
+    Once the canvas has the correct size it gets cleared using
+    <a href="https://developer.mozilla.org/en-US/docs/DOM/CanvasRenderingContext2D#clearRect()">clearRect</a>
+    and the circle is drawn using
+    <a href="https://developer.mozilla.org/en-US/docs/DOM/CanvasRenderingContext2D#arc()">arc</a>.</p>
+    
+    <p>The function <code>drawPoint</code> draws a particle with type of the
+    given value at the given position in the canvas. The type value gets
+    transformed into the corresponding color and the pixel gets painted on the
+    canvas using
+    <a href="https://developer.mozilla.org/en-US/docs/DOM/CanvasRenderingContext2D#fillRect()">fillRect</a>.</p>
+    
+    <p>variable <code>grid</code></p>
+    
+    <p>function <code>addPoint</code></p>
+    
+    <p>function <code>computeStartPoint</code></p>
+    
+    <p>function <code>computePoint</code></p>
+    
+    <p>function <code>computePointTwo</code> analogue to
+    <code>computePoint</code> but using <code>computeProp</code>
+    to get the sticking propability.</p>
+    
+    <p>functions <code>step</code> and <code>stepTwo</code> using
+    <a href="https://developer.mozilla.org/en-US/docs/DOM/window.setTimeout">window.setTimeout</a></p>
+    
+    <p>Finally the function <code>start</code> calls
+    the setup functions to initialize the canvas and the <code>grid</code>
+    and places the initial seed. Then it starts the first <code>step</code>.</p>
+  </body>
+</html>

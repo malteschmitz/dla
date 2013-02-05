@@ -22,3 +22,7 @@ fieldset {
   float: left;
   margin: 5pt;
 }
+
+body.doc {
+  max-width: 650px;
+}
