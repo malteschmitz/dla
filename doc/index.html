@@ -9,6 +9,10 @@
       <a href="https://github.com/malteschmitz/dla"><img class="fork" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
     </p>
     <h1>Diffusion-limited aggregation (DLA)</h1>
+    <p class="authors">
+      <a href="http://malte.schmitz-sh.de">Malte Schmitz</a>
+      <a>Eike von Tils</a>
+    </p>
     
     <blockquote>
       Diffusion-limited aggregation (DLA) is the process whereby particles
@@ -148,23 +152,64 @@
     canvas using
     <a href="https://developer.mozilla.org/en-US/docs/DOM/CanvasRenderingContext2D#fillRect()">fillRect</a>.</p>
     
-    <p>variable <code>grid</code></p>
+    <p>The current state of the grid is internally stored in the variable
+    <code>grid</code>. This variable is a JavaScript object and is indexed
+    via <em>x</em> + <em>y</em> &middot; <em>width</em>. A JavaScript objects
+    works roughly like a hash map, so storing spare matrices like this grid
+    is more efficient than using real arrays. (JavaScript does not have
+    real arrays anyway.)</p>
     
-    <p>function <code>addPoint</code></p>
+    <p>The function <code>addPoint</code> takes the coordinates of a point and
+    a value and adds this point to <code>grid</code>, calls
+    <code>drawPoint</code> and adds the point to the list
+    <code>oldPoints</code>. In this list a fixed number of last points is kept.
+    These are the highlighted points and the list is used to remove the
+    highlighting from the canvas for every point that leaves the queue.</p>
     
-    <p>function <code>computeStartPoint</code></p>
+    <p>The function <code>computeStartPoint</code> returns a random start point
+    somewhere on the circle. This point gets computed using a random number
+    &alpha; out of the range [0, 2&pi;) and evaluating
+    <em>x</em> = radius &middot; cos(&alpha;) and <em>y</em> = radius &middot;
+    sin(&alpha;).</p>
     
-    <p>function <code>computePoint</code></p>
+    <p>The function <code>computePoint</code> computes a start point with
+    the above function and lets it diffuse. If the particle moves out
+    of the grid, the inner loop ends and the outer loop starts another
+    run with a new start point. If a position with particles in the
+    neighborhoud is reached the function returns the current position
+    if a random number out of [0,1) is lower than the specified
+    stickiness.</p>
     
-    <p>function <code>computePointTwo</code> analogue to
+    <p>The function <code>computePointTwo</code> works analogue to
     <code>computePoint</code> but using <code>computeProp</code>
-    to get the sticking propability.</p>
+    to get the sticking propability. The function
+    <code>computeProp</code> takes the value of the diffusing particle
+    and the value of the neighbor particle and returns the stickiness
+    propability. The returned value for all neighbor particles get added
+    together and if a random number out of [0,1) is lower than the stickiness
+    computed this way the function returns the current position.</p>
     
-    <p>functions <code>step</code> and <code>stepTwo</code> using
-    <a href="https://developer.mozilla.org/en-US/docs/DOM/window.setTimeout">window.setTimeout</a></p>
+    <p>The functions <code>step</code> and <code>stepTwo</code> are calling
+    <code>computePoint</code> or <code>computePointTwo</code>
+    and <code>addPoint</code> to perform one step. This function is not called
+    in a loop but calling itself using
+    <a href="https://developer.mozilla.org/en-US/docs/DOM/window.setTimeout">window.setTimeout</a>.
+    This way the browsers gets back control after every particle added to the
+    clister and the user can see the cluster growing while it gets computed.</p>
     
     <p>Finally the function <code>start</code> calls
     the setup functions to initialize the canvas and the <code>grid</code>
     and places the initial seed. Then it starts the first <code>step</code>.</p>
+    
+    <h2>License</h2>
+    
+    <p>The source code and this document are released on
+    <a href="http://malteschmitz.github.com/dla">GitHub</a><sup>1</sup>
+    under the
+    <a href="http://www.opensource.org/licenses/MIT">MIT Licence</a><sup>2</sup>.</p>
+    
+    <hr>
+    <p><sup>1</sup> <tt>http://malteschmitz.github.com/dla</tt><br>
+    <sup>2</sup> <tt>http://www.opensource.org/licenses/MIT</tt></p>
   </body>
 </html>

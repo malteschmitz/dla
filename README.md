@@ -10,3 +10,9 @@ Thanks to GitHub pages a
 exists.
 [A complete documentation](http://malteschmitz.github.com/dla/doc)
 is included. 
+
+License
+-------
+
+DLA is released under the
+[MIT License]{http://www.opensource.org/licenses/MIT}.
