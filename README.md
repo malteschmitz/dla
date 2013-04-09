@@ -6,9 +6,9 @@ diffusion-limited aggregation. It should work in all modern browsers
 supporting ECMAScript 5.
 
 Thanks to GitHub pages a
-[running version to play around with](http://malteschmitz.github.com/dla)
+[running version to play around with](http://malteschmitz.github.io/dla)
 exists.
-[A complete documentation](http://malteschmitz.github.com/dla/doc)
+[A complete documentation](http://malteschmitz.github.io/dla/doc)
 is included. 
 
 License
