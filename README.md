@@ -15,4 +15,4 @@ License
 -------
 
 DLA is released under the
-[MIT License]{http://www.opensource.org/licenses/MIT}.
+[MIT License](http://www.opensource.org/licenses/MIT).
